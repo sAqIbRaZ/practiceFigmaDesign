@@ -1,18 +1,14 @@
 import 'package:contained_tab_bar_view/contained_tab_bar_view.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
-import 'package:flutter_swipe_detector/flutter_swipe_detector.dart';
 import 'package:food_delivery_app/utils/app_images.dart';
 import 'package:food_delivery_app/utils/colors.dart';
 import 'package:food_delivery_app/utils/textStyles.dart';
 import 'package:food_delivery_app/views/home_screen/restaurant/restaurant_more_info_screen.dart';
 import 'package:food_delivery_app/views/home_screen/widgets/hot_selling_content_widget.dart';
-import 'package:food_delivery_app/widgets/reusable_elevated_button.dart';
 import 'package:get/get.dart';
 
 class RestaurantDetailScreen extends StatefulWidget {
-  RestaurantDetailScreen(
+  const RestaurantDetailScreen(
       {Key? key, required this.title, required this.imagePath})
       : super(key: key);
   final String title;

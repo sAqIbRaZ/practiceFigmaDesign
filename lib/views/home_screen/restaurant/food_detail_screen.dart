@@ -1,7 +1,4 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
-import 'package:flutter_svg/svg.dart';
 import 'package:food_delivery_app/utils/app_images.dart';
 import 'package:food_delivery_app/utils/colors.dart';
 import 'package:food_delivery_app/utils/textStyles.dart';
@@ -9,7 +6,6 @@ import 'package:food_delivery_app/views/home_screen/restaurant/empty_basket_scre
 import 'package:food_delivery_app/views/home_screen/widgets/title_widget.dart';
 import 'package:food_delivery_app/widgets/reusable_elevated_button.dart';
 import 'package:get/get.dart';
-import 'package:get/get_state_manager/get_state_manager.dart';
 
 import '../../../controllers/home_module/home_controller.dart';
 
@@ -433,7 +429,9 @@ class FoodDetailScreen extends StatelessWidget {
                       ),
                       onTap: (snack) {
                         print(snack);
-                        Get.to(() => EmptyBasketScreen());
+                        Get.to(() => const EmptyBasketScreen(
+                              title: 'Mcdonald\'s - DHA',
+                            ));
                       },
                     );
                   }),

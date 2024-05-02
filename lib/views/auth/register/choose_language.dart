@@ -32,6 +32,7 @@ class _ChooseLanguageScreenState extends State<ChooseLanguageScreen> {
 
   final authController = Get.put(AuthController());
 
+  @override
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
 

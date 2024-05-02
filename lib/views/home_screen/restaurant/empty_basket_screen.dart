@@ -6,8 +6,8 @@ import '../../../utils/app_images.dart';
 import '../../../utils/textStyles.dart';
 
 class EmptyBasketScreen extends StatelessWidget {
-  const EmptyBasketScreen({Key? key}) : super(key: key);
-
+  const EmptyBasketScreen({Key? key, this.title = ''}) : super(key: key);
+  final String title;
   @override
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
@@ -15,7 +15,7 @@ class EmptyBasketScreen extends StatelessWidget {
       appBar: AppBar(
         centerTitle: true,
         title: Text(
-          'My Basket',
+          title.isEmpty ? 'My Basket' : title,
           style: AppTextStyles.sohniFont.copyWith(
             fontSize: size.width * 0.05,
           ),

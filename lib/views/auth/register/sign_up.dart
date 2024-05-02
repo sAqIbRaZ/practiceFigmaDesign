@@ -271,7 +271,7 @@ class SignUpScreen extends StatelessWidget {
                               fontFamily: 'heebo'),
                         ),
                         onPressed: () {
-                          Get.off(() => SignInScreen());
+                          Get.off(() => const SignInScreen());
                         },
                       ),
                     ],

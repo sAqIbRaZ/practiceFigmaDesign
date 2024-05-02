@@ -126,7 +126,7 @@ class SignInScreen extends StatelessWidget {
                   btnColor: AppColors.primaryColor,
                   text: 'Sign in',
                   onPressed: () {
-                    Get.offAll(() => HomeScreen());
+                    Get.offAll(() => const HomeScreen());
                   },
                 ),
               ),

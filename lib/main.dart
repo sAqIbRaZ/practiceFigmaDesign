@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:food_delivery_app/views/auth/splash/splash_screen.dart';
-import 'package:food_delivery_app/views/home_screen/home_screen.dart';
-import 'package:food_delivery_app/views/profile/profile_screen.dart';
 import 'package:get/get_navigation/src/root/get_material_app.dart';
 
 void main() {
