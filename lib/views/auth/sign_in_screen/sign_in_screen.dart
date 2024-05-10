@@ -1,16 +1,21 @@
 import 'package:flutter/material.dart';
+import 'package:food_delivery_app/controllers/auth_controller/auth_controller.dart';
+import 'package:food_delivery_app/models/api_services.dart';
+import 'package:food_delivery_app/models/auth_models/login_model.dart';
 import 'package:food_delivery_app/utils/app_images.dart';
 import 'package:food_delivery_app/utils/colors.dart';
+import 'package:food_delivery_app/utils/custom_toast_message.dart';
 import 'package:food_delivery_app/views/auth/forgot_password/forgot_passowrd_screen.dart';
 import 'package:food_delivery_app/views/auth/register/sign_up.dart';
-import 'package:food_delivery_app/views/home_screen/home_screen.dart';
-import 'package:food_delivery_app/widgets/reusable_elevated_button.dart';
 import 'package:get/get.dart';
-
-import '../../../widgets/reusable_textfield.dart';
+import '../../home_screen/first_home_screen.dart';
+import '../../widgets/reusable_elevated_button.dart';
+import '../../widgets/reusable_textfield.dart';
 
 class SignInScreen extends StatelessWidget {
-  const SignInScreen({Key? key}) : super(key: key);
+  SignInScreen({Key? key}) : super(key: key);
+
+  // final authController = Get.put(AuthController());
 
   @override
   Widget build(BuildContext context) {
@@ -71,7 +76,9 @@ class SignInScreen extends StatelessWidget {
                         fontFamily: 'heebo'),
                   ),
                   SizedBox(height: size.height * 0.012),
-                  const ReusableTextField(
+                  ReusableTextField(
+                    controller:
+                        Get.find<AuthController>().emailSignInController,
                     textFieldColor: AppColors.whiteColor,
                   ),
                   SizedBox(height: size.height * 0.032),
@@ -83,7 +90,9 @@ class SignInScreen extends StatelessWidget {
                         fontFamily: 'heebo'),
                   ),
                   SizedBox(height: size.height * 0.012),
-                  const ReusableTextField(
+                  ReusableTextField(
+                    controller:
+                        Get.find<AuthController>().passwordSignInController,
                     obscureText: true,
                     textFieldColor: AppColors.whiteColor,
                   ),
@@ -102,7 +111,7 @@ class SignInScreen extends StatelessWidget {
                   const SizedBox(),
                   TextButton(
                       onPressed: () {
-                        Get.to(const ForgotPasswordScreen());
+                        Get.to(ForgotPasswordScreen());
                       },
                       child: const Text(
                         'Forgot Password?',
@@ -119,17 +128,64 @@ class SignInScreen extends StatelessWidget {
               //
               SizedBox(height: size.height * 0.018),
 
-              SizedBox(
-                width: double.infinity,
-                child: ReusableElevatedButton(
-                  textColor: AppColors.whiteColor,
-                  btnColor: AppColors.primaryColor,
-                  text: 'Sign in',
-                  onPressed: () {
-                    Get.offAll(() => const HomeScreen());
-                  },
-                ),
-              ),
+              Obx(() => SizedBox(
+                    width: double.infinity,
+                    child: Get.find<AuthController>().isLoading.value
+                        ? const Center(
+                            child: CircularProgressIndicator(
+                            color: Colors.black,
+                          ))
+                        : ReusableElevatedButton(
+                            textColor: AppColors.whiteColor,
+                            btnColor: AppColors.primaryColor,
+                            text: 'Sign in',
+                            onPressed: () async {
+                              ///sign in api
+                              //
+
+                              if (Get.find<AuthController>()
+                                  .emailSignInController
+                                  .text
+                                  .isEmpty) {
+                                showCustomToast('Email is required');
+                              } else if (Get.find<AuthController>()
+                                  .passwordSignInController
+                                  .text
+                                  .isEmpty) {
+                                showCustomToast('Passowrd is required');
+                              } else {
+                                // Get.find<AuthController>()
+                                //     .isLoadingFunction(true);
+
+                                // final user = SignInModel(
+                                //     email: Get.find<AuthController>()
+                                //         .emailSignInController
+                                //         .text
+                                //         .toString(),
+                                //     password: Get.find<AuthController>()
+                                //         .passwordSignInController
+                                //         .text
+                                //         .toString(),
+                                //     deviceToken: 'token');
+                                // final isLoggedIn =
+                                //     await APIServices().signInUserApi(user);
+
+                                // if (isLoggedIn) {
+                                //   Get.find<AuthController>()
+                                //       .changeCurrentNavBarIndexFunction(0);
+                                //   Get.find<AuthController>()
+                                //       .isLoadingFunction(false);
+                                //
+                                //   Get.offAll(() => const FirstHomeScreen());
+                                // }
+                                // Get.find<AuthController>()
+                                //     .isLoadingFunction(false);
+
+                                Get.find<AuthController>().login();
+                              }
+                            },
+                          ),
+                  )),
 
               ///
               /// New to ace create account
@@ -151,7 +207,7 @@ class SignInScreen extends StatelessWidget {
                   ),
                   InkWell(
                     onTap: () {
-                      Get.off(() => SignUpScreen());
+                      Get.off(() => const SignUpScreen());
                     },
                     child: const Text(
                       'Create Account',

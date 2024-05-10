@@ -1,12 +1,8 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:food_delivery_app/views/profile/orders/order_detail_screen.dart';
-import 'package:food_delivery_app/views/profile/widget/reusable_order_history_widget.dart';
 import 'package:get/get.dart';
-
-import '../../../utils/app_images.dart';
 import '../../../utils/textStyles.dart';
+import '../../widgets/profile_module/widget/reusable_order_history_widget.dart';
 
 class OrderHistoryScreen extends StatelessWidget {
   const OrderHistoryScreen({Key? key}) : super(key: key);

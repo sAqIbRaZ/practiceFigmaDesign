@@ -1,24 +1,45 @@
-import 'package:flutter/cupertino.dart';
+import 'package:country_picker/country_picker.dart';
 import 'package:flutter/material.dart';
+import 'package:food_delivery_app/models/api_services.dart';
+import 'package:food_delivery_app/models/validations.dart';
 import 'package:food_delivery_app/utils/colors.dart';
-import 'package:food_delivery_app/views/auth/register/choose_language.dart';
+import 'package:food_delivery_app/views/auth/register/verifyEmailScreen.dart';
 import 'package:food_delivery_app/views/auth/sign_in_screen/sign_in_screen.dart';
-import 'package:food_delivery_app/widgets/reusable_elevated_button.dart';
-import 'package:food_delivery_app/widgets/reusable_textfield.dart';
 import 'package:get/get.dart';
 
 import '../../../controllers/auth_controller/auth_controller.dart';
-import '../../../utils/app_images.dart';
+import '../../../models/auth_models/register_user_model.dart';
+import '../../widgets/reusable_elevated_button.dart';
+import '../../widgets/reusable_textfield.dart';
 
-class SignUpScreen extends StatelessWidget {
-  SignUpScreen({Key? key}) : super(key: key);
+class SignUpScreen extends StatefulWidget {
+  const SignUpScreen({Key? key}) : super(key: key);
 
-  final authController = Get.put(AuthController());
+  @override
+  State<SignUpScreen> createState() => _SignUpScreenState();
+}
+
+class _SignUpScreenState extends State<SignUpScreen> {
+  // final authController = Get.put(AuthController());
+
+  String userPhoneNumber = '';
+
+  // final TextEditingController firstNameController = TextEditingController();
+  //
+  // final TextEditingController lastNameController = TextEditingController();
+  //
+  // final TextEditingController emailController = TextEditingController();
+  //
+  // final TextEditingController passwordController = TextEditingController();
+  //
+  // final TextEditingController confirmPasswordController =
+  //     TextEditingController();
+  //
+  // TextEditingController phoneNumberController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
-
     return Scaffold(
       body: SingleChildScrollView(
         child: Column(
@@ -76,7 +97,9 @@ class SignUpScreen extends StatelessWidget {
                                     fontSize: 12),
                               ),
                             ),
-                            const ReusableTextField(
+                            ReusableTextField(
+                              controller: Get.find<AuthController>()
+                                  .firstNameSignUpController,
                               textFieldColor: AppColors.whiteColor,
                             ),
                           ],
@@ -98,7 +121,9 @@ class SignUpScreen extends StatelessWidget {
                                     fontSize: 12),
                               ),
                             ),
-                            const ReusableTextField(
+                            ReusableTextField(
+                              controller: Get.find<AuthController>()
+                                  .lastNameSignUpController,
                               textFieldColor: AppColors.whiteColor,
                             ),
                           ],
@@ -122,9 +147,16 @@ class SignUpScreen extends StatelessWidget {
                           fontSize: 12),
                     ),
                   ),
-                  const ReusableTextField(
+                  ReusableTextField(
+                    controller:
+                        Get.find<AuthController>().emailSignUpController,
                     textFieldColor: AppColors.whiteColor,
                   ),
+
+                  ///
+                  /// country and phone
+                  ///
+                  ///
                   Padding(
                     padding: const EdgeInsets.only(top: 8.0),
                     child: Text(
@@ -137,7 +169,34 @@ class SignUpScreen extends StatelessWidget {
                     ),
                   ),
                   ReusableTextField(
-                    prefixWidget: Image.asset(AppImages.pakistaniFlag),
+                    controller:
+                        Get.find<AuthController>().phoneNumberSignUpController,
+                    onTap: () {
+                      if (Get.find<AuthController>()
+                          .userPhoneNumberCode
+                          .value
+                          .isEmpty) {
+                        showCountryPicker(
+                          context: context,
+                          showPhoneCode:
+                              true, // optional. Shows phone code before the country name.
+                          onSelect: (Country country) {
+                            Get.find<AuthController>()
+                                .userPhoneNumberCodeFunction(
+                                    '+${country.phoneCode}');
+
+                            Get.find<AuthController>()
+                                .phoneNumberSignUpController
+                                .text = '+${country.phoneCode}';
+                            setState(() {});
+
+                            print(Get.find<AuthController>()
+                                .userPhoneNumberCode
+                                .value);
+                          },
+                        );
+                      }
+                    },
                     keyboardType: TextInputType.number,
                     textFieldColor: AppColors.whiteColor,
                   ),
@@ -157,14 +216,20 @@ class SignUpScreen extends StatelessWidget {
                     ),
                   ),
                   Obx(() => ReusableTextField(
+                        controller:
+                            Get.find<AuthController>().passwordSignUpController,
                         textFieldColor: AppColors.whiteColor,
-                        obscureText: authController.isObsecurePassword.value,
+                        obscureText:
+                            Get.find<AuthController>().isObsecurePassword.value,
                         suffixWidget: IconButton(
                           onPressed: () {
-                            authController.obscurePasswordFunction();
+                            Get.find<AuthController>()
+                                .obscurePasswordFunction();
                           },
-                          icon: Icon(authController.isObsecurePassword.value
-                              ? CupertinoIcons.eye
+                          icon: Icon(Get.find<AuthController>()
+                                  .isObsecurePassword
+                                  .value
+                              ? Icons.visibility_off
                               : Icons.remove_red_eye_outlined),
                         ),
                       )),
@@ -184,16 +249,21 @@ class SignUpScreen extends StatelessWidget {
                     ),
                   ),
                   Obx(() => ReusableTextField(
+                        controller: Get.find<AuthController>()
+                            .confirmPasswordSignUpController,
                         textFieldColor: AppColors.whiteColor,
-                        obscureText: authController
-                            .isObsecureConfirmPawwordPassword.value,
+                        obscureText: Get.find<AuthController>()
+                            .isObsecureConfirmPawwordPassword
+                            .value,
                         suffixWidget: IconButton(
                           onPressed: () {
-                            authController.obscureConfirmPasswordFunction();
+                            Get.find<AuthController>()
+                                .obscureConfirmPasswordFunction();
                           },
-                          icon: Icon(authController
-                                  .isObsecureConfirmPawwordPassword.value
-                              ? CupertinoIcons.eye
+                          icon: Icon(Get.find<AuthController>()
+                                  .isObsecureConfirmPawwordPassword
+                                  .value
+                              ? Icons.visibility_off
                               : Icons.remove_red_eye_outlined),
                         ),
                       )),
@@ -205,11 +275,11 @@ class SignUpScreen extends StatelessWidget {
                   Obx(
                     () => InkWell(
                       onTap: () {
-                        authController.agreeToTermsFunction();
+                        Get.find<AuthController>().agreeToTermsFunction();
                       },
                       child: Row(
                         children: [
-                          Icon(authController.agreeToTerms.value
+                          Icon(Get.find<AuthController>().agreeToTerms.value
                               ? Icons.check_box
                               : Icons.check_box_outline_blank),
                           const SizedBox(width: 8),
@@ -234,18 +304,58 @@ class SignUpScreen extends StatelessWidget {
                   //
                   SizedBox(height: size.height * 0.045),
 
-                  SizedBox(
-                    width: double.infinity,
-                    child: ReusableElevatedButton(
-                      textColor: AppColors.whiteColor,
-                      btnColor: AppColors.primaryColor,
-                      text: 'Create account',
-                      onPressed: () {
-                        Get.to(const ChooseLanguageScreen());
-                        // Get.off(() => ChooseLanguageScreen());
-                      },
-                    ),
-                  ),
+                  Obx(() => Center(
+                        child: SizedBox(
+                          width: Get.find<AuthController>().isRegistering.value
+                              ? 30
+                              : double.infinity,
+                          child: Get.find<AuthController>().isRegistering.value
+                              ? const CircularProgressIndicator(
+                                  color: Colors.black,
+                                )
+                              : ReusableElevatedButton(
+                                  textColor: AppColors.whiteColor,
+                                  btnColor: AppColors.primaryColor,
+                                  text: 'Create account',
+                                  onPressed: () async {
+                                    ///
+                                    ///validation
+                                    ///
+
+                                    // Get.find<AuthController>()
+                                    //     .isRegisteringUserFunction(true);
+
+                                    final isValidationSuccess =
+                                        Validation.validateInputFields(
+                                            Get.find<AuthController>()
+                                                .firstNameSignUpController
+                                                .text,
+                                            Get.find<AuthController>()
+                                                .lastNameSignUpController
+                                                .text,
+                                            Get.find<AuthController>()
+                                                .emailSignUpController
+                                                .text,
+                                            Get.find<AuthController>()
+                                                .passwordSignUpController
+                                                .text,
+                                            Get.find<AuthController>()
+                                                .confirmPasswordSignUpController
+                                                .text,
+                                            Get.find<AuthController>()
+                                                .phoneNumberSignUpController
+                                                .text,
+                                            Get.find<AuthController>()
+                                                .agreeToTerms
+                                                .value);
+
+                                    if (isValidationSuccess) {
+                                      Get.find<AuthController>().register();
+                                    }
+                                  },
+                                ),
+                        ),
+                      )),
 
                   ///
                   /// already on my ace
@@ -271,7 +381,7 @@ class SignUpScreen extends StatelessWidget {
                               fontFamily: 'heebo'),
                         ),
                         onPressed: () {
-                          Get.off(() => const SignInScreen());
+                          Get.off(() => SignInScreen());
                         },
                       ),
                     ],

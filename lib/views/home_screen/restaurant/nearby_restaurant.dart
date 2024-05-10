@@ -1,13 +1,8 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
-import 'package:flutter_svg/svg.dart';
-import 'package:food_delivery_app/views/home_screen/widgets/title_widget.dart';
-import 'package:get/get.dart';
-
 import '../../../utils/app_images.dart';
 import '../../../utils/colors.dart';
-import '../../../utils/textStyles.dart';
+import '../../widgets/home_module/widgets/title_widget.dart';
+import '../../widgets/reusable_appbar.dart';
 
 class NearbyRestaurantScreen extends StatelessWidget {
   const NearbyRestaurantScreen({Key? key}) : super(key: key);
@@ -16,15 +11,7 @@ class NearbyRestaurantScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
     return Scaffold(
-        appBar: AppBar(
-          centerTitle: true,
-          title: Text(
-            'Nearby restaurant',
-            style: AppTextStyles.sohniFont.copyWith(
-              fontSize: size.width * 0.05,
-            ),
-          ),
-        ),
+        appBar: ReusableAppBar('Nearby restaurant'),
         body: ListView.builder(
           itemCount: 3,
           itemBuilder: (context, index) {
@@ -52,13 +39,15 @@ class NearbyRestaurantScreen extends StatelessWidget {
                               ),
                               Positioned(
                                 top: size.height * 0.01,
-                                left: size.height * 0.005,
                                 child: Image.asset(AppImages.hilal),
                               ),
                               Positioned(
-                                  top: size.height * 0.01,
-                                  right: size.width * 0.06,
-                                  child: Image.asset(AppImages.favourite)),
+                                  top: size.height * 0.016,
+                                  right: 18,
+                                  child: Image.asset(
+                                    AppImages.favourite,
+                                    width: size.width * 0.06,
+                                  )),
                             ],
                           ),
                         ),

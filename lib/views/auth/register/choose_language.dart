@@ -3,10 +3,10 @@ import 'package:food_delivery_app/utils/app_images.dart';
 import 'package:food_delivery_app/utils/colors.dart';
 import 'package:food_delivery_app/utils/textStyles.dart';
 import 'package:food_delivery_app/views/auth/register/enable_location_screen.dart';
-import 'package:food_delivery_app/widgets/reusable_elevated_button.dart';
 import 'package:get/get.dart';
 
 import '../../../controllers/auth_controller/auth_controller.dart';
+import '../../widgets/reusable_elevated_button.dart';
 
 class ChooseLanguageScreen extends StatefulWidget {
   const ChooseLanguageScreen({Key? key}) : super(key: key);

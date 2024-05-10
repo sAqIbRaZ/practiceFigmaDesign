@@ -5,7 +5,7 @@ import 'package:get/get.dart';
 
 import '../../../controllers/auth_controller/auth_controller.dart';
 import '../../../utils/colors.dart';
-import '../../../widgets/walkthrough_buttons.dart';
+import '../../widgets/walkthrough_buttons.dart';
 import 'welcome_screen.dart';
 
 class OnBoardingScreen extends StatelessWidget {

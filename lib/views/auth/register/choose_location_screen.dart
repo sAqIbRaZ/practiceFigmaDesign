@@ -2,12 +2,12 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:food_delivery_app/utils/app_images.dart';
 import 'package:food_delivery_app/utils/colors.dart';
-import 'package:food_delivery_app/views/home_screen/home_screen.dart';
-import 'package:food_delivery_app/widgets/reusable_elevated_button.dart';
-import 'package:food_delivery_app/widgets/reusable_textfield.dart';
 import 'package:get/get.dart';
 
 import '../../../utils/textStyles.dart';
+import '../../home_screen/first_home_screen.dart';
+import '../../widgets/reusable_elevated_button.dart';
+import '../../widgets/reusable_textfield.dart';
 
 class ChooseLocationScreen extends StatelessWidget {
   const ChooseLocationScreen({Key? key}) : super(key: key);
@@ -98,7 +98,7 @@ class ChooseLocationScreen extends StatelessWidget {
                     btnColor: AppColors.primaryColor,
                     text: 'Confirm address',
                     onPressed: () {
-                      Get.offAll(() => const HomeScreen());
+                      Get.offAll(() => FirstHomeScreen());
                     }),
               )
             ],

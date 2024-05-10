@@ -2,12 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:food_delivery_app/utils/app_images.dart';
 import 'package:food_delivery_app/utils/colors.dart';
 import 'package:food_delivery_app/utils/textStyles.dart';
-import 'package:food_delivery_app/views/home_screen/restaurant/empty_basket_screen.dart';
-import 'package:food_delivery_app/views/home_screen/widgets/title_widget.dart';
-import 'package:food_delivery_app/widgets/reusable_elevated_button.dart';
 import 'package:get/get.dart';
 
 import '../../../controllers/home_module/home_controller.dart';
+import '../../widgets/home_module/widgets/title_widget.dart';
+import '../../widgets/reusable_elevated_button.dart';
 
 class FoodDetailScreen extends StatelessWidget {
   FoodDetailScreen({Key? key, required this.title}) : super(key: key);
@@ -26,10 +25,16 @@ class FoodDetailScreen extends StatelessWidget {
           ///
           Stack(
             children: [
-              Image.asset(AppImages.foodDetailImage),
+              SizedBox(
+                  height: size.height * 0.25,
+                  width: size.width,
+                  child: Image.asset(
+                    AppImages.foodDetailImage,
+                    fit: BoxFit.fill,
+                  )),
               Positioned(
                 top: size.height * 0.013,
-                right: size.width * 0.036,
+                right: size.width * 0.038,
                 child: Container(
                   height: size.height * 0.11,
                   width: size.width * 0.11,
@@ -60,7 +65,7 @@ class FoodDetailScreen extends StatelessWidget {
             width: size.width,
             child: Padding(
               padding: EdgeInsets.only(
-                  left: size.width * 0.035, top: size.width * 0.03),
+                  left: size.width * 0.035, top: size.width * 0.023),
               child: SingleChildScrollView(
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
@@ -120,7 +125,9 @@ class FoodDetailScreen extends StatelessWidget {
                                         value: 0,
                                         selectedTileColor:
                                             AppColors.primaryColor,
-                                        contentPadding: EdgeInsets.zero,
+                                        contentPadding:
+                                            const EdgeInsets.symmetric(
+                                                vertical: 0),
                                         fillColor:
                                             const MaterialStatePropertyAll(
                                                 AppColors.primaryColor),
@@ -373,27 +380,30 @@ class FoodDetailScreen extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.spaceAround,
             children: [
               Container(
-                height: size.height * 0.05,
+                height: size.height * 0.055,
                 width: size.width * 0.45,
                 decoration: BoxDecoration(
                   color: const Color(0xffFFE1DA),
                   borderRadius: BorderRadius.circular(5),
                 ),
-                child: Obx(() => Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceAround,
-                      children: [
-                        InkWell(
-                            onTap: () {
-                              homeController.itemQuantitydecrement();
-                            },
-                            child: Image.asset(AppImages.minus)),
-                        Text(homeController.itemQuantity.value.toString()),
-                        InkWell(
-                            onTap: () {
-                              homeController.itemQuantityIncrement();
-                            },
-                            child: Image.asset(AppImages.plus)),
-                      ],
+                child: Obx(() => Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceAround,
+                        children: [
+                          InkWell(
+                              onTap: () {
+                                homeController.itemQuantitydecrement();
+                              },
+                              child: Image.asset(AppImages.minus)),
+                          Text(homeController.itemQuantity.value.toString()),
+                          InkWell(
+                              onTap: () {
+                                homeController.itemQuantityIncrement();
+                              },
+                              child: Image.asset(AppImages.plus)),
+                        ],
+                      ),
                     )),
               ),
               ReusableElevatedButton(
@@ -402,24 +412,22 @@ class FoodDetailScreen extends StatelessWidget {
                   text: 'Add to Cart',
                   onPressed: () {
                     Navigator.of(context).pop();
+                    print(homeController.isItemsAddedToCart.value.toString());
 
-                    Get.snackbar(
-                      '',
-                      '',
-                      isDismissible: true,
-                      dismissDirection: DismissDirection.horizontal,
-                      duration: const Duration(seconds: 6),
-                      padding: EdgeInsets.zero,
-                      margin: const EdgeInsets.all(15),
+                    homeController.ItemAddedToCartFuction();
+                    print(homeController.isItemsAddedToCart.value.toString());
+
+                    final snackBar = SnackBar(
+                      behavior: SnackBarBehavior.floating,
+                      margin: const EdgeInsets.symmetric(
+                          vertical: 15, horizontal: 5),
                       backgroundColor: AppColors.primaryColor,
-                      icon: Image.asset(AppImages.cartBasketIcon),
-                      snackPosition: SnackPosition.BOTTOM,
-                      colorText: AppColors.whiteColor,
-                      titleText: Column(
-                        mainAxisAlignment: MainAxisAlignment.center,
+                      content: Row(
                         children: [
+                          Image.asset(AppImages.cartBasketIcon),
+                          const SizedBox(width: 15),
                           Text(
-                            '\n(3 items) View your Cart       \$ 130.00 ',
+                            '(3 items) View your Cart     \$ 130.00  ',
                             textAlign: TextAlign.center,
                             style: AppTextStyles.sohniFont.copyWith(
                               color: AppColors.whiteColor,
@@ -427,13 +435,9 @@ class FoodDetailScreen extends StatelessWidget {
                           ),
                         ],
                       ),
-                      onTap: (snack) {
-                        print(snack);
-                        Get.to(() => const EmptyBasketScreen(
-                              title: 'Mcdonald\'s - DHA',
-                            ));
-                      },
                     );
+
+                    ScaffoldMessenger.of(context).showSnackBar(snackBar);
                   }),
             ],
           )

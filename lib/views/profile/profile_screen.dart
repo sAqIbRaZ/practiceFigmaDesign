@@ -1,16 +1,20 @@
 import 'package:flutter/material.dart';
 import 'package:food_delivery_app/utils/app_images.dart';
+import 'package:food_delivery_app/utils/colors.dart';
 import 'package:food_delivery_app/utils/textStyles.dart';
+import 'package:food_delivery_app/views/auth/sign_in_screen/sign_in_screen.dart';
 import 'package:food_delivery_app/views/profile/edit_profile_screen.dart';
 import 'package:food_delivery_app/views/profile/saved_addresses_screen.dart';
 import 'package:food_delivery_app/views/profile/orders/order_history_screen.dart';
-import 'package:food_delivery_app/views/profile/widget/reusable_list_tile.dart';
-import 'package:food_delivery_app/widgets/bottom_nav_bar_widget.dart';
 import 'package:get/get.dart';
 
-class ProfileScreen extends StatelessWidget {
-  const ProfileScreen({Key? key}) : super(key: key);
+import '../../controllers/auth_controller/auth_controller.dart';
+import '../widgets/bottom_nav_bar_widget.dart';
+import '../widgets/profile_module/widget/reusable_list_tile.dart';
 
+class ProfileScreen extends StatelessWidget {
+  ProfileScreen({Key? key}) : super(key: key);
+  final isAuthControllerInitialized = Get.isRegistered<AuthController>();
   @override
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
@@ -48,7 +52,7 @@ class ProfileScreen extends StatelessWidget {
               ///
               /// list tile widget
               //
-              SizedBox(height: size.height * 0.1),
+              SizedBox(height: size.height * 0.02),
               ReusableListTile(
                 title: 'Edit Profile',
                 imagePath: AppImages.editSVGIcon,
@@ -101,6 +105,23 @@ class ProfileScreen extends StatelessWidget {
                 title: 'Privacy Policy',
                 imagePath: AppImages.privacy_pollicySVGIcon,
                 onTap: () => null,
+              ),
+              ListTile(
+                onTap: () {
+                  ///
+                  /// give user a confirmation
+                  //
+                  Get.find<AuthController>().changeIndicatorColor(0);
+
+                  Get.offAll(() => SignInScreen(),
+                      transition: Transition.native);
+                },
+                title: const Text('Logout'),
+                trailing: const Icon(Icons.exit_to_app),
+                leading: const Icon(
+                  Icons.accessibility_outlined,
+                  color: AppColors.primaryColor,
+                ),
               ),
             ],
           ),

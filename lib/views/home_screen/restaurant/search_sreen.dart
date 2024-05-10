@@ -1,15 +1,14 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:food_delivery_app/views/home_screen/widgets/search_screen_resuable_hot_searches_widget.dart';
-import 'package:food_delivery_app/views/home_screen/widgets/show_serached_restaurant_widget.dart';
 import 'package:get/get.dart';
 
 import '../../../controllers/home_module/home_controller.dart';
 import '../../../utils/app_images.dart';
 import '../../../utils/colors.dart';
-import '../../../widgets/reusable_textfield.dart';
+import '../../widgets/home_module/widgets/search_screen_resuable_hot_searches_widget.dart';
+import '../../widgets/home_module/widgets/show_serached_restaurant_widget.dart';
+import '../../widgets/reusable_textfield.dart';
 
 class SearchScreen extends StatefulWidget {
   SearchScreen({Key? key}) : super(key: key);

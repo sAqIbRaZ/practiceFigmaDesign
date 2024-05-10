@@ -58,4 +58,37 @@ class HomeController extends GetxController {
       itemQuantity.value--;
     }
   }
+
+  ///
+  ///  is payment for card added or not
+//
+
+  RxBool isPaymentCardAdded = false.obs;
+
+  void addPaymentCardFunction() {
+    isPaymentCardAdded.value = true;
+  }
+  //
+  ///  is payment for card added or not
+//
+
+  RxBool isItemsAddedToCart = false.obs;
+
+  void ItemAddedToCartFuction() {
+    isItemsAddedToCart.value = true;
+  }
+
+  ///
+  ///
+  /// show app bar title
+//
+  RxBool isAppBarClosed = false.obs;
+
+  void showAppBarTitleFunction() {
+    isAppBarClosed.value = true;
+  }
+
+  void hideAppBarTitleFunction() {
+    isAppBarClosed.value = false;
+  }
 }

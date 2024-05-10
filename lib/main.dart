@@ -1,8 +1,12 @@
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+import 'package:food_delivery_app/utils/getx_bindings.dart';
+import 'package:food_delivery_app/views/auth/forgot_password/enter_code_screen.dart';
+import 'package:food_delivery_app/views/auth/register/sign_up.dart';
 import 'package:food_delivery_app/views/auth/splash/splash_screen.dart';
-import 'package:get/get_navigation/src/root/get_material_app.dart';
+import 'package:get/get.dart';
 
-void main() {
+void main() async {
   runApp(const MyApp());
 }
 
@@ -15,10 +19,11 @@ class MyApp extends StatelessWidget {
     return GetMaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'Flutter Demo',
+      initialBinding: AuthBinding(),
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: const SplashScreen(),
+      home: SignUpScreen(),
     );
   }
 }

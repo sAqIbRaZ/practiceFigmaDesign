@@ -7,4 +7,5 @@ class AppColors {
   static const Color primaryColorLow = Color.fromRGBO(255, 106, 73, 0.2);
   static const Color primaryColorLow2 = Color.fromRGBO(255, 106, 73, 0.7);
   static const Color whiteColor = CupertinoColors.white;
+  static const Color firstHomeScreenContainerColor = Color(0xffFFE1DA);
 }

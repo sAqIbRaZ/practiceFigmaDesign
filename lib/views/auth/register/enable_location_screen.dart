@@ -1,12 +1,10 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:food_delivery_app/utils/colors.dart';
 import 'package:food_delivery_app/views/auth/register/choose_location_screen.dart';
-import 'package:food_delivery_app/widgets/reusable_elevated_button.dart';
 import 'package:get/get.dart';
 
 import '../../../utils/app_images.dart';
+import '../../widgets/reusable_elevated_button.dart';
 
 class EnableLocationScreen extends StatelessWidget {
   const EnableLocationScreen({Key? key}) : super(key: key);

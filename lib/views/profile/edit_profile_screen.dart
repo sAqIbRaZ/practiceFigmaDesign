@@ -1,13 +1,12 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:food_delivery_app/controllers/profile_module/profile_controller.dart';
 import 'package:food_delivery_app/utils/app_images.dart';
 import 'package:food_delivery_app/utils/colors.dart';
 import 'package:food_delivery_app/utils/textStyles.dart';
-import 'package:food_delivery_app/views/profile/profile_screen.dart';
-import 'package:food_delivery_app/widgets/reusable_textfield.dart';
 import 'package:get/get.dart';
+
+import '../widgets/reusable_textfield.dart';
 
 class EditProfileScreen extends StatefulWidget {
   EditProfileScreen({Key? key}) : super(key: key);

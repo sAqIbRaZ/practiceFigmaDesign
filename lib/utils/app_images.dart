@@ -8,6 +8,41 @@ class AppImages {
   static const String walkthrough3 = 'assets/splash/walkthrough_3.jpg';
   static const String pakistaniFlag = 'assets/splash/pakistani_flag.jpg';
 
+  ///
+  /// delivery instruction in basekt screen
+  ///
+  static const String deliveryInstructionsBasketScreen =
+      'assets/delivery_instructions.png';
+  static const String paymentIcon = 'assets/payment_icon.png';
+  static const String orderSummaryIcon = 'assets/order_summary_icon.png';
+  static const String voucherIcon = 'assets/voucher_icon.png';
+  static const String visaIcon = 'assets/visa_icon.png';
+  static const String masterCardIcon = 'assets/master_card.png';
+  static const String timeToDeliverOrder = 'assets/time_to_deliver_order.png';
+  static const String backButton = 'assets/back_button.png';
+  static const String cookingOngoingOrder = 'assets/cooking.png';
+  static const String deliveredOngoingOrder = 'assets/delivered.png';
+  static const String orderConfirmed = 'assets/order_confirmed.png';
+  static const String pickedUpOngoingOrder = 'assets/picked_up.png';
+  static const String pickedUpDone = 'assets/picked_up_done.png';
+  static const String preparingUpDone = 'assets/preparing_done.png';
+  static const String orderTrackingLocation =
+      'assets/order_tracking_location.png';
+  static const String orderTrackingtime = 'assets/order_tracking_time.png';
+  static const String orderTrackingMapImage = 'assets/order_tracking_image.png';
+  static const String foodDelivery = 'assets/food_delivery.png';
+  static const String freshGrocery = 'assets/fresh_grocery.png';
+  static const String bookARideImage = 'assets/book_a_ride_image.png';
+  static const String driverNotFoundImage = 'assets/driver_not_found_image.png';
+  static const String cancelOrderScreenImage =
+      'assets/cance_order_screen_image.png';
+  static const String firstHomeScreenLocationIcon =
+      'assets/frst_home_location_icon.png';
+  static const String processingOrderImage =
+      'assets/processing_order_image.png';
+  static const String checkoutLocationIcon =
+      'assets/checkout_location_icon.png';
+
   // location services
 
   static const String locationService =
@@ -62,6 +97,8 @@ class AppImages {
   static const String avatar = 'assets/icons/avatar.png';
   static const String bike = 'assets/icons/bike.png';
   static const String time = 'assets/icons/time.png';
+  static const String callDriver = 'assets/call_driver.png';
+  static const String message_driver = 'assets/mssage_driver.png';
   static const String homeBasketIcon = 'assets/icons/home_basket_icon.svg';
   static const String lineSearchHomeIcon = 'assets/icons/line_search_bar.png';
   static const String homeSearchBarSuffixIcon =

@@ -1,13 +1,11 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:food_delivery_app/utils/app_images.dart';
 import 'package:food_delivery_app/utils/colors.dart';
 import 'package:food_delivery_app/views/auth/register/sign_up.dart';
 import 'package:food_delivery_app/views/auth/sign_in_screen/sign_in_screen.dart';
 import 'package:get/get.dart';
 
-import '../../../widgets/reusable_elevated_button.dart';
+import '../../widgets/reusable_elevated_button.dart';
 
 class WelcomeScreen extends StatelessWidget {
   @override

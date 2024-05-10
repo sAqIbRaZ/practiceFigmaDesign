@@ -2,7 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:food_delivery_app/utils/app_images.dart';
 import 'package:food_delivery_app/utils/colors.dart';
+import 'package:food_delivery_app/views/auth/register/sign_up.dart';
+import 'package:food_delivery_app/views/home_screen/first_home_screen.dart';
 import 'package:get/get.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 import 'onboarding_screen.dart';
 
@@ -18,12 +21,23 @@ class _SplashScreenState extends State<SplashScreen> {
   void initState() {
     Future.delayed(
       const Duration(seconds: 3),
-      () {
-        Get.off(() => OnBoardingScreen());
+      () async {
+        final string = await checkUserStatus();
+        if (string != "null") {
+          Get.offAll(() => FirstHomeScreen());
+        } else {
+          Get.off(() => SignUpScreen());
+        }
         // replaces the current screen with FirstWalkthroughScreen
       },
     );
     super.initState();
+  }
+
+  Future<String> checkUserStatus() async {
+    final prefs = await SharedPreferences.getInstance();
+
+    return prefs.getString('userId').toString();
   }
 
   @override

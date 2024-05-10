@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:food_delivery_app/utils/colors.dart';
-import 'package:food_delivery_app/widgets/reusable_elevated_button.dart';
 
 import '../../../utils/app_images.dart';
 import '../../../utils/textStyles.dart';
+import '../../widgets/reusable_elevated_button.dart';
 
 class EmptyBasketScreen extends StatelessWidget {
   const EmptyBasketScreen({Key? key, this.title = ''}) : super(key: key);

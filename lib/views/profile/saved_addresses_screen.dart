@@ -1,11 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/flutter_svg.dart';
-import 'package:food_delivery_app/utils/app_images.dart';
 import 'package:food_delivery_app/utils/colors.dart';
-import 'package:food_delivery_app/views/profile/widget/reusable_saved_address_widget.dart';
-import 'package:food_delivery_app/widgets/reusable_elevated_button.dart';
 
 import '../../utils/textStyles.dart';
+import '../widgets/profile_module/widget/reusable_saved_address_widget.dart';
+import '../widgets/reusable_elevated_button.dart';
 
 class SavedAddressesScreen extends StatelessWidget {
   const SavedAddressesScreen({Key? key}) : super(key: key);

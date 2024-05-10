@@ -25,26 +25,42 @@ class TopCousinsScreen extends StatelessWidget {
             const SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 2),
         itemBuilder: (context, index) {
           return Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: Card(
-              color: AppColors.whiteColor,
-              elevation: 7,
+            padding: const EdgeInsets.only(
+              left: 20.0,
+              top: 20,
+              bottom: 20,
+              right: 20,
+            ),
+            child: Container(
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(4),
+                color: AppColors.whiteColor,
+                boxShadow: [
+                  BoxShadow(
+                    color: Colors.black
+                        .withOpacity(0.25), // Adjust color as needed
+                    blurRadius: 4.0, // Adjust blur radius as needed
+                    spreadRadius: 0.0, // Adjust spread radius as needed
+                    offset: const Offset(0.0, 4.0), // Adjust offset as needed
+                  ),
+                ],
+              ),
               child: Column(
+                mainAxisSize: MainAxisSize.min,
                 children: [
                   SizedBox(
-                    width: size.width * 0.43,
+                    width: size.width * 0.455,
+                    height: size.height * 0.13,
                     child: ClipRRect(
                       borderRadius: BorderRadius.circular(5),
                       child: Image.asset(
                         listOfCousins[index]['imagePath'].toString(),
-                        fit: BoxFit.cover,
-                        width: size.width * 0.34,
-                        height: size.height * 0.15,
+                        fit: BoxFit.fill,
                       ),
                     ),
                   ),
                   Padding(
-                    padding: const EdgeInsets.symmetric(vertical: 7.0),
+                    padding: const EdgeInsets.symmetric(vertical: 8.0),
                     child: Text(
                       listOfCousins[index]['title'].toString(),
                       style: const TextStyle(fontWeight: FontWeight.w600),
